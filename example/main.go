@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/victor-simida/gossiper"
+	"github.com/victor-simida/gossiper/pb"
 	"time"
 )
 
@@ -32,7 +33,7 @@ func main() {
 	defer s2.Stop()
 	defer s3.Stop()
 
-	s1.CompareAndStore([]gossiper.GossipValue{
+	s1.StoreMessage([]*pb.Message{
 		{
 			Key:     "1",
 			Version: 1,
@@ -45,7 +46,7 @@ func main() {
 	fmt.Printf("%+v\n", s2.CacheSnapShoot())
 	fmt.Printf("%+v\n", s3.CacheSnapShoot())
 
-	s1.CompareAndStore([]gossiper.GossipValue{
+	s1.StoreMessage([]*pb.Message{
 		{
 			Key:     "2",
 			Version: 1,
@@ -62,14 +63,14 @@ func main() {
 	fmt.Printf("%+v\n", s2.CacheSnapShoot())
 	fmt.Printf("%+v\n", s3.CacheSnapShoot())
 
-	s2.CompareAndStore([]gossiper.GossipValue{
+	s1.StoreMessage([]*pb.Message{
 		{
 			Key:     "3",
 			Version: 1,
 			Value:   "3",
 		},
 	})
-	s3.CompareAndStore([]gossiper.GossipValue{
+	s1.StoreMessage([]*pb.Message{
 		{
 			Key:     "4",
 			Version: 1,

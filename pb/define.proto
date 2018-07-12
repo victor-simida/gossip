@@ -1,0 +1,31 @@
+syntax = "proto3";
+package proto;
+
+message Header {
+    int32 flag = 1;
+}
+
+message ExchangeBeginRequest {
+    repeated Digest MyApple = 1;
+}
+
+message ExchangeRequest {
+    repeated Message MyPeculiarApple = 1;
+    repeated Digest YourPeculiarApple = 2;
+}
+
+message ExchangeEndRequest {
+    repeated Message MyPeculiarApple = 1;
+}
+
+message Digest {
+    string Key = 1;
+    uint64 Version = 2;
+}
+
+message Message {
+    string Key = 1;
+    uint64 Version = 2;
+    string Value = 3;
+    bool DeleteFlag = 4;
+}
